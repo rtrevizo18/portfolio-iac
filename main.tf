@@ -55,3 +55,11 @@ resource "aws_route53_record" "vps" {
   ttl = 300
   records = [aws_instance.our_vm.public_ip]
 }
+
+resource "aws_route53_record" "vps_www" {
+  zone_id = aws_route53_zone.my_domain.zone_id
+  name = "www.ricardotrevizo.com"
+  type = "CNAME"
+  ttl = 300
+  records = ["ricardotrevizo.com"]
+}
