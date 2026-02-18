@@ -4,5 +4,5 @@ output "instance_public_ip" {
 }
 
 output "route53_ns" {
-  value = aws_route53_zone.ricardotrevizo.name_servers
+  value = aws_route53_zone.my_domain.name_servers
 }
