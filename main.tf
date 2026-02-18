@@ -43,3 +43,15 @@ resource "aws_instance" "our_vm" {
     Name = "Example"
   }
 }
+
+resource "aws_route53_zone" "my_domain" {
+  name = "ricardotrevizo.com"
+}
+
+resource "aws_route53_record" "vps" {
+  zone_id = aws_route53_zone.my_domain.zone_id
+  name = "ricardotrevizo.com"
+  type = "A"
+  ttl = 300
+  records = [aws_instance.our_vm.public_ip]
+}
