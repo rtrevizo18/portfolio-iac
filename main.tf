@@ -18,6 +18,23 @@ data "aws_ami" "ubuntu" {
   }
 }
 
+terraform {
+  cloud {
+    organization = "ricardo-terraform"
+
+    workspaces {
+      name = "portfolio-iac"
+    }
+  }
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 resource "aws_instance" "our_vm" {
   instance_type = "t3.micro"
   ami = data.aws_ami.ubuntu.id
